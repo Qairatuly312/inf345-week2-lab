@@ -6,8 +6,7 @@ echo "FILES: $(find "$DIR" -type f | wc -l | tr -d ' ')"
 echo "DIRS: $(find "$DIR" -mindepth 1 -type d | wc -l | tr -d ' ')"
 
 echo "LARGEST:"
-find "$DIR" -type f -exec stat -f '%z %N' {} \; 2>/dev/null |
-    sed "s| $DIR/| |" |
+find "$DIR" -type f -printf '%s %P\n' |
     sort -nr |
     head -n 3
 
